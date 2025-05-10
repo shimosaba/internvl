@@ -1,0 +1,18 @@
+#!/bin/sh
+
+DATASET_DIR="/kaggle/input/generate_image/valid"
+LABEL_PATH="${DATASET_DIR}/labels.jsonl"
+IMAGE_DIR="${DATASET_DIR}/image"
+DATASET_LENGTH=100
+TIMEOUT=1000
+
+PROMPT="<image>\nPlease output company, name, email, phone_number, address from business card."
+
+filename="./logs/make_dataset_valid.log"
+
+python3 -u make_dataset.py --dataset_dir "${DATASET_DIR}" \
+    --label_path "${LABEL_PATH}" \
+    --image_dir "${IMAGE_DIR}" \
+    --dataset_length "${DATASET_LENGTH}" \
+    --timeout "${TIMEOUT}" \
+    --prompt "${PROMPT}" > "${filename}" & 
